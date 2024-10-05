@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .hidden {
+            display: none;
+        }
+        .highlight {
+            color: red;
+            font-weight: bold;
+        }
+        .main {
+            margin-top: 10px;
+            padding: 10px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>DOM Manipulation Practice</h1>
+    
+    <div>
+        <h2>This is Practice</h2>
+        <button onclick="addText()">Add Div</button>
+        <button onclick="changeStyle()">Change Style</button>
+        <button onclick="removeDiv()">Remove Last Div</button>
+        <button onclick="toggleVisibility()">Toggle Div Visibility</button>
+    </div>
+
+    <script>
+        // Function to add a new div element
+        function addText() {
+            const div = document.createElement('div');
+            div.className = 'main';
+            div.setAttribute('title', 'title generated');
+            div.id = 'div-' + Math.round(Math.random() * 100);
+
+            div.innerText = 'This is a new div';
+            div.style.background = 'green';
+            document.body.append(div);
+        }
+
+        // Function to change the style of the most recently added div
+        function changeStyle() {
+            const div = document.querySelector('.main');
+            if (div) {
+                div.style.background = 'red';
+                div.style.color = 'yellow';
+                div.style.fontSize = '20px';
+            } else {
+                alert("No div found to style.");
+            }
+        }
+
+        // Function to remove the last added div
+        function removeDiv() {
+            const allDivs = document.querySelectorAll('.main');
+            if (allDivs.length > 0) {
+                const lastDiv = allDivs[allDivs.length - 1];
+                lastDiv.remove();
+            } else {
+                alert("No div left to remove.");
+            }
+        }
+
+        // Function to toggle visibility of all the divs with class 'main'
+        function toggleVisibility() {
+            const allDivs = document.querySelectorAll('.main');
+            allDivs.forEach(div => {
+                if (div.style.display === 'none') {
+                    div.style.display = 'block';
+                } else {
+                    div.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
+
